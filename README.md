@@ -1,4 +1,4 @@
-# OpenAI Image MCP Server
+# OpenAI DALL-E MCP Server
 
 A stateless MCP (Model Context Protocol) server that allows generating images via the OpenAI DALL-E API.
 
@@ -16,10 +16,22 @@ A stateless MCP (Model Context Protocol) server that allows generating images vi
 
 ## Installation
 
+### Option 1: Install from npm (Recommended)
+
+```bash
+# Install globally
+npm install -g openai-dalle-mcp
+
+# Or install locally in your project
+npm install openai-dalle-mcp
+```
+
+### Option 2: Clone the Repository
+
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/openai-image-mcp.git
-   cd openai-image-mcp
+   git clone https://github.com/yourusername/openai-dalle-mcp.git
+   cd openai-dalle-mcp
    ```
 
 2. Install dependencies:
@@ -27,22 +39,49 @@ A stateless MCP (Model Context Protocol) server that allows generating images vi
    npm install
    ```
 
-3. Create a `.env` file in the root directory with your OpenAI API key:
-   ```
-   OPENAI_API_KEY=your_openai_api_key_here
+3. Build the package:
+   ```bash
+   npm run build
    ```
 
 ## Usage
 
-### Building the Server
-
-Build the server:
+### Using as a Command Line Tool (when installed globally)
 
 ```bash
-npm run build
+# Set your OpenAI API key as an environment variable
+export OPENAI_API_KEY=your_openai_api_key_here
+
+# Run the server
+openai-dalle-mcp
 ```
 
+### Using in Your Project
+
 The server is designed to be used with stdio transport, which means it doesn't run as a standalone service. Instead, it's started by MCP clients when needed.
+
+```javascript
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+
+// Create client
+const client = new Client({
+  name: "image-client",
+  version: "1.0.0"
+});
+
+// Connect to the server
+const transport = new StdioClientTransport({
+  command: "openai-dalle-mcp", // If installed globally
+  // Or use the path to the node_modules binary
+  // command: "./node_modules/.bin/openai-dalle-mcp",
+  env: {
+    OPENAI_API_KEY: "your_openai_api_key_here"
+  }
+});
+
+await client.connect(transport);
+```
 
 ### Available Tools
 

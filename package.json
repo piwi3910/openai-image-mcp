@@ -1,22 +1,41 @@
 {
-  "name": "openai-image-mcp",
+  "name": "openai-dalle-mcp",
   "version": "1.0.0",
   "description": "MCP server for generating images via OpenAI DALL-E API",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "openai-dalle-mcp": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "openai",
     "dall-e",
     "mcp",
-    "image-generation"
+    "image-generation",
+    "model-context-protocol"
   ],
-  "author": "",
+  "author": "Your Name <your.email@example.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/openai-dalle-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/openai-dalle-mcp/issues"
+  },
+  "homepage": "https://github.com/yourusername/openai-dalle-mcp#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "latest",
     "dotenv": "^16.3.1",
