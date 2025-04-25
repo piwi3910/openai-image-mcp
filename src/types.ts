@@ -13,7 +13,7 @@ export interface GenerateImageParams {
 
 export interface GenerateImageResponse {
   url: string;
-  revisedPrompt?: string;
+  revisedPrompt?: string | undefined;
 }
 
 export interface SaveImageParams {

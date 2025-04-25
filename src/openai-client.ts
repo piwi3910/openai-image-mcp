@@ -31,14 +31,22 @@ export async function generateImage(params: GenerateImageParams): Promise<Genera
       response_format: 'url',
     });
     
+    if (!response.data || response.data.length === 0) {
+      throw new Error('No image data returned from OpenAI API');
+    }
+    
     const imageUrl = response.data[0].url;
+    if (!imageUrl) {
+      throw new Error('No image URL returned from OpenAI API');
+    }
+    
     const revisedPrompt = response.data[0].revised_prompt;
     
     console.log(`Image generated successfully: ${imageUrl}`);
     
     return {
       url: imageUrl,
-      revisedPrompt,
+      revisedPrompt: revisedPrompt || undefined,
     };
   } catch (error) {
     console.error('Error generating image:', error);
