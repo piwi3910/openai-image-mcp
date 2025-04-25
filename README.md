@@ -247,7 +247,7 @@ The example client will generate an image of a futuristic city and save it to th
 
 ## Versioning and Updates
 
-Current version: **1.0.1**
+Current version: **1.0.2**
 
 To update to the latest version:
 
