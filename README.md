@@ -35,11 +35,9 @@ npm install openai-dalle-mcp
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/openai-dalle-mcp.git
+   git clone https://github.com/piwi3910/openai-dalle-mcp.git
    cd openai-dalle-mcp
    ```
-
-   > Note: Replace `yourusername` with the actual GitHub username where the repository is hosted.
 
 2. Install dependencies:
    ```bash

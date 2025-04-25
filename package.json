@@ -27,16 +27,16 @@
     "image-generation",
     "model-context-protocol"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "piwi3910",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/openai-dalle-mcp.git"
+    "url": "git+https://github.com/piwi3910/openai-dalle-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/openai-dalle-mcp/issues"
+    "url": "https://github.com/piwi3910/openai-dalle-mcp/issues"
   },
-  "homepage": "https://github.com/yourusername/openai-dalle-mcp#readme",
+  "homepage": "https://github.com/piwi3910/openai-dalle-mcp#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "latest",
     "dotenv": "^16.3.1",
