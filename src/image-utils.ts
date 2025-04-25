@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import fetch from 'node-fetch';
+import { fetch } from 'undici';
 import { SaveImageParams, SaveImageResponse } from './types.js';
 
 // Get the directory name in ESM
