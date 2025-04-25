@@ -1,12 +1,13 @@
 # OpenAI Image MCP Server
 
-An MCP (Model Context Protocol) server that allows generating images via the OpenAI DALL-E API.
+A stateless MCP (Model Context Protocol) server that allows generating images via the OpenAI DALL-E API.
 
 ## Features
 
 - Generate images using DALL-E 3 with customizable parameters
 - Save generated images to local files
 - Implements the Model Context Protocol for seamless integration with MCP clients
+- Stateless design using stdio transport
 
 ## Prerequisites
 
@@ -29,27 +30,19 @@ An MCP (Model Context Protocol) server that allows generating images via the Ope
 3. Create a `.env` file in the root directory with your OpenAI API key:
    ```
    OPENAI_API_KEY=your_openai_api_key_here
-   PORT=3000
    ```
 
 ## Usage
 
-### Starting the Server
+### Building the Server
 
-Build and start the server:
+Build the server:
 
 ```bash
 npm run build
-npm start
 ```
 
-For development with auto-restart:
-
-```bash
-npm run dev
-```
-
-The server will be available at `http://localhost:3000/mcp`.
+The server is designed to be used with stdio transport, which means it doesn't run as a standalone service. Instead, it's started by MCP clients when needed.
 
 ### Available Tools
 
@@ -85,7 +78,7 @@ Here's an example of how to use this server with an MCP client:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 
 async function main() {
   // Create client
@@ -95,9 +88,10 @@ async function main() {
   });
 
   // Connect to the server
-  const transport = new StreamableHTTPClientTransport(
-    new URL("http://localhost:3000/mcp")
-  );
+  const transport = new StdioClientTransport({
+    command: "node",
+    args: ["path/to/dist/index.js"]
+  });
   await client.connect(transport);
 
   try {
@@ -133,6 +127,32 @@ async function main() {
 
 main().catch(console.error);
 ```
+
+### Running the Example Client
+
+We've included an example client in the `examples` directory:
+
+1. Navigate to the examples directory:
+   ```bash
+   cd examples
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Build the client:
+   ```bash
+   npm run build
+   ```
+
+4. Run the client:
+   ```bash
+   npm start
+   ```
+
+The example client will generate an image of a futuristic city and save it to the `examples/images` directory.
 
 ## License
 

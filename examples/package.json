@@ -9,7 +9,7 @@
     "start": "node client.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.1.0"
+    "@modelcontextprotocol/sdk": "latest"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

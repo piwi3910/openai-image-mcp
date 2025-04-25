@@ -1,5 +1,5 @@
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -17,9 +17,10 @@ async function main() {
   });
 
   // Connect to the server
-  const transport = new StreamableHTTPClientTransport(
-    new URL("http://localhost:3000/mcp")
-  );
+  const transport = new StdioClientTransport({
+    command: "node",
+    args: ["../dist/index.js"]
+  });
   
   console.log("Connecting to MCP server...");
   await client.connect(transport);
