@@ -1,6 +1,11 @@
 # OpenAI DALL-E MCP Server
 
+[![npm version](https://img.shields.io/npm/v/openai-dalle-mcp.svg)](https://www.npmjs.com/package/openai-dalle-mcp)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A stateless MCP (Model Context Protocol) server that allows generating images via the OpenAI DALL-E API.
+
+> **Now available on npm!** Install with `npm install openai-dalle-mcp`
 
 ## Features
 
@@ -33,6 +38,8 @@ npm install openai-dalle-mcp
    git clone https://github.com/yourusername/openai-dalle-mcp.git
    cd openai-dalle-mcp
    ```
+
+   > Note: Replace `yourusername` with the actual GitHub username where the repository is hosted.
 
 2. Install dependencies:
    ```bash
@@ -171,8 +178,12 @@ async function main() {
 
   // Connect to the server
   const transport = new StdioClientTransport({
-    command: "node",
-    args: ["path/to/dist/index.js"]
+    command: "openai-dalle-mcp", // If installed globally
+    // Or if installed locally in your project:
+    // command: "./node_modules/.bin/openai-dalle-mcp",
+    env: {
+      OPENAI_API_KEY: "your_openai_api_key_here"
+    }
   });
   await client.connect(transport);
 
@@ -235,6 +246,22 @@ We've included an example client in the `examples` directory:
    ```
 
 The example client will generate an image of a futuristic city and save it to the `examples/images` directory.
+
+## Versioning and Updates
+
+Current version: **1.0.1**
+
+To update to the latest version:
+
+```bash
+# For global installation
+npm update -g openai-dalle-mcp
+
+# For local installation
+npm update openai-dalle-mcp
+```
+
+Check for the latest version on [npm](https://www.npmjs.com/package/openai-dalle-mcp).
 
 ## License
 
