@@ -83,6 +83,41 @@ const transport = new StdioClientTransport({
 await client.connect(transport);
 ```
 
+### MCP Server Configuration
+
+To add this server to your MCP configuration file (typically `mcp_settings.json`), add the following entry:
+
+```json
+{
+  "servers": [
+    {
+      "name": "openai-dalle",
+      "command": "openai-dalle-mcp",
+      "env": {
+        "OPENAI_API_KEY": "your_openai_api_key_here"
+      }
+    }
+  ]
+}
+```
+
+If you've installed the package locally in your project:
+
+```json
+{
+  "servers": [
+    {
+      "name": "openai-dalle",
+      "command": "node",
+      "args": ["./node_modules/.bin/openai-dalle-mcp"],
+      "env": {
+        "OPENAI_API_KEY": "your_openai_api_key_here"
+      }
+    }
+  ]
+}
+```
+
 ### Available Tools
 
 #### 1. generate-image
@@ -110,6 +145,14 @@ Parameters:
 Returns:
 - `filePath`: Absolute path where the image was saved
 - `success`: Boolean indicating whether the operation was successful
+
+### Using with MCP-enabled AI Assistants
+
+Once configured in your MCP settings, you can use this server with AI assistants that support the Model Context Protocol. For example, with Claude:
+
+```
+You can now generate images using DALL-E 3. Try using the openai-dalle server's generate-image tool with a prompt like "a futuristic city with flying cars".
+```
 
 ### Example Client Usage
 
