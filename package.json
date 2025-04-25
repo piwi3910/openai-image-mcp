@@ -1,6 +1,6 @@
 {
   "name": "openai-dalle-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for generating images via OpenAI DALL-E API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
